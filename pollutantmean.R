@@ -13,19 +13,19 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
         	}else {
         		print ("Incorrect pollutant option")
         		}
-        for (i in 1:length(id))
-        {
-        	zpad <-c(0)
+         for (i in 1:length(id))
+         {
+        	# zpad <-c(0)
 
-        	if (id[i]<=9){
-        		zpad<-"00"
-        	}else if(id[i]>=10 & id[i]<=99) {
-        		zpad<-"0"
-        	}
+        	# if (id[i]<=9){
+        		# zpad<-"00"
+        	# }else if(id[i]>=10 & id[i]<=99) {
+        		# zpad<-"0"
+        	# }
         	
         	
 			pathtohere <- getwd()
-			pathtofile <-file.path(pathtohere,directory,paste(zpad,id[i],".csv",sep=""))
+			pathtofile <-file.path(pathtohere,directory,paste(sprintf('%03d',id[i]),".csv",sep=""))
 			dataneeded<-read.csv(pathtofile,head = TRUE)
 			
 			allpollutant<-append(allpollutant,dataneeded[,pid],after = length(allpollutant))
